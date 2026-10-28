@@ -8,7 +8,7 @@ public class FamousQuotes {
 
     public static void main(String[] args) {
 
-        String userText;
+        String userText = "";
 
         String[] famousQuotes = new String[10];
         famousQuotes[0] = "Motivation Quote";
@@ -22,15 +22,18 @@ public class FamousQuotes {
         famousQuotes[8] = "Motivation Quote";
         famousQuotes[9] = "Motivation Quote";
 
-        try {
-            System.out.println("Choose a number 1-10 for a quote: ");
+        do {
+            try {
+                System.out.println("Choose a number 1-10 for a quote: ");
+                userText = userInput.nextLine();
+                int answer = Integer.parseInt(userText);
+                System.out.println(famousQuotes[answer - 1]);
+            } catch (ArrayIndexOutOfBoundsException indexError) {
+                System.err.println("Bad index: " + indexError.getMessage());
+            }
+            System.out.println("Want another quote? (Yes/No)");
             userText = userInput.nextLine();
-            int answer = Integer.parseInt(userText);
-            System.out.println(famousQuotes[answer - 1]);
-        } catch (ArrayIndexOutOfBoundsException indexError) {
-            System.err.println("Bad index: " + indexError.getMessage() );
-        }
-
+        } while (userText.equalsIgnoreCase("yes"));
         userInput.close();
     }
 }
